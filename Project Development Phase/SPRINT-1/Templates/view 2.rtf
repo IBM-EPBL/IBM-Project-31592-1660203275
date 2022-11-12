@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\{% extends "base.html" %\}\par
+\par
+\{% block content %\}\par
+\par
+\{% with messages = get_flashed_messages() %\}\par
+  \{% if messages %\}\par
+\par
+  <script type="text/javascript">\par
+    var m=\{\{ messages|safe \}\};\par
+    for(var i=0;i<m.length;i++)\par
+    \{\par
+      alert(m[i]);\par
+    \}\par
+  </script>\par
+\par
+  \{% endif %\}\par
+\{% endwith %\}\par
+\par
+<table id="example" class="display" style="width:100%">\par
+        <thead>\par
+            <tr>\par
+                <th>Sno</th>\par
+                <th>Name</th>\par
+                <th>Email</th>\par
+                <th>Blood_group</th>\par
+                <th>Weight</th>\par
+                <th>Gender</th>\par
+                <th>Dob</th>\par
+                <th>Address</th>\par
+                <th>Adharno</th>\par
+                <th>Action</th>\par
+            </tr>\par
+        </thead>\par
+        <tbody>\par
+            \{% for d in data %\}\par
+            <tr>\par
+                <td>\{\{loop.index\}\}\par
+                <td>\{\{d[1]\}\}</td>\par
+                <td>\{\{d[2]\}\}</td>\par
+                <td>\{\{d[4]\}\}</td>\par
+                <td>\{\{d[5]\}\}</td>\par
+                <td>\{\{d[6]\}\}</td>\par
+                <td>\{\{d[7]\}\}</td>\par
+                <td>\{\{d[8]\}\}</td>\par
+                <td>\{\{d[10]\}\}</td>\par
+\par
+\par
+\par
+                <td>\par
+                  <form action="\{\{url_for('send')\}\}" method="POST">\par
+                  <button value=\{\{d[0]\}\} name="send">Send sms</button>\par
+                  </form>\par
+                </td>\par
+\par
+                \par
+            </tr>\par
+            \{% endfor %\}\par
+        </tbody>\par
+</table>\par
+\par
+\par
+<script type="text/javascript">\par
+\par
+$(document).ready(function() \{\par
+    $('#example').DataTable( \{\par
+        dom: 'Bfrtip',\par
+        buttons: [\par
+            'copy', 'csv', 'excel', 'pdf', 'print'\par
+        ]\par
+    \} );\par
+\} );\par
+\par
+</script>\par
+<div class="container-fluid"> <!-- Header content -->\par
+    <nav class="navbar navbar-inverse">\par
+  <div class="container-fluid">\par
+    <div class="navbar-header">\par
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">\par
+        <span class="icon-bar"></span>\par
+        <span class="icon-bar"></span>\par
+        <span class="icon-bar"></span>\par
+      </button>\par
+\par
+      <div>\par
+    <ul class="nav navbar-nav navbar-right">\par
+        <li><a href="\{\{url_for('view')\}\}"><span class="glyphicon glyphicon-log-out"></span> Inactive</a></li>\par
+  </ul>\par
+  </div>\par
+\par
+    <div>\par
+    <ul class="nav navbar-nav navbar-right">\par
+        <li><a href="\{\{url_for('login')\}\}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>\par
+    </ul>\par
+    </div>\par
+\par
+  </div>\par
+  </div>\par
+  </nav>\par
+</div>\par
+\{% endblock %\}\par
+}
